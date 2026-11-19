@@ -1,0 +1,44 @@
+import "@/app/globals.css";
+import Footer from "@/components/common/footer";
+import { Navbar } from "@/components/navigation/navbar";
+import { Providers } from "@/utils/providers";
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import { Toaster } from "sonner";
+
+const geistSans = Geist({
+    variable: "--font-geist-sans",
+    subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+    variable: "--font-geist-mono",
+    subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+    title: "JobSift | Find your next opportunity",
+    description:
+        "Discover career opportunities, explore roles by category, and take the next step in your job search with JobSift.",
+};
+
+export default function RootLayout({
+    children,
+}: Readonly<{
+    children: React.ReactNode;
+}>) {
+    return (
+        <html lang="en" suppressHydrationWarning>
+            <body
+                className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased `}
+            >
+                <Providers>
+                    <Navbar />
+                    {children}
+                    <Footer />
+                    <Toaster />
+                </Providers>
+            </body>
+        </html>
+    );
+}
